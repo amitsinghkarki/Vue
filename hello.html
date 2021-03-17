@@ -3,10 +3,17 @@
 <html>
     <body>
         <div id="example">
+            <span v-once>This will never change: {{ msg }}</span>
+            <div v-bind:id="seen"> heelo</div>
+            <button v-bind:disabled="seen">Button</button>
+           
+
+
             <p>{{ msg }}</p>
             <button v-on:click="reverseMessage">Reverse Message</button>
             <span v-if='seen'><b>Text Message Reversed</b></span>
-
+            <h1 v-if="seen">Tue value</h1>
+            <h1 v-else>Oh no 😢</h1>
         </div>
 
           <div id="app-2">
@@ -23,7 +30,7 @@
                 Now we provide each todo-item with the todo object
                 it's representing, so that its content can be dynamic.
                 We also need to provide each component with a "key",
-                which will be explained later.
+                which will be explained later. edited now
               -->
               <todo-item
                 v-for="item in groceryList"
@@ -34,6 +41,41 @@
           </div>
 
 
+
+          <div id="demo">
+            <label >First name:</label><input v-model='firstName' placeholder='First Name'>   
+            
+            <label >Last name:</label><input v-model='lastName' placeholder='Last Name'>
+            <br/> <label>Full name:</label>{{ fullName }}</div>
+
+
+           
+<!--  Items-->
+              <ul id="example-1">
+                <li v-for="item in items" :key="item.message">
+                  {{ item.message }}
+                </li>
+              </ul>
+
+              <ul id="example-2">
+                <li v-for="(item, index) in items" >
+                 {{parentMessage}} - {{index}} - {{ item.message }}
+                </li>
+              </ul>
+
+
+
+              <h1>v-for with an Object              </h1>
+              <div id='example-3'>
+              <ul id="v-for-object" class="demo">
+                <li v-for="(value,name) in object">
+                  {{ name }}: {{ value }}
+                </li>
+              </ul>
+            </div>
+
+
     </body>
 </html>
 <script src="hello.js"></script>
+
