@@ -7,72 +7,97 @@
 
 
 
-<h1>Clicker</h1>
 
-<div id='example-1'>
-<button @click.prevent="counter +=1">Add 1</button>
+
+<template id="card">
+  <div class="section">
+    <div class="title" v-on:click="toggle">
+      <span class="toggleIcon" id="toggleIcon">{{toggleIcon}}</span> <span class="toggleName id="toggleName >{{toggleName}} Toggle </span>
+    </div>
+    <div class="body" v-show="showSection">
+      <slot></slot>
+      <br/>
+    </div>
+  </div>
+</template>
+
+<div id="app">
+
+<card toggle-name='Clicker app'>
+  <button @click.prevent="counter +=1">Add 1</button>
 <p> The button has been clicked {{counter}} times. </p>
+</card>
+
+  <card toggle-name='Greet User'>
+    <button v-on:click="greet">Greet</button>
+
+
+  </card>
+<card toggle-name='METHODS IN LINE HANDLER'>
+    <button v-on:click="say('hi')">Say hi</button>
+    <button v-on:click="say('what')">Say what</button>
+    <button v-on:click="warn('Form cannot be submitted yet.', $event)">
+      Submit
+    </button>
+
+</card>
+
+
+<card toggle-name='v-model'>
+    <input v-model="message" placeholder="edit me">
+    <p>Message is: {{ message }}</p>
+  </card>
+
+  <card toggle-name='Multiple Checks'>
+
+          <input type="checkbox" id="checkbox" v-model="checked">
+      <label for="checkbox">{{ checked }}</label>
+
+      <h1>Multiple checkbox bound to same array</h1>
+      <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+      <label for="jack">Jack</label>
+      <input type="checkbox" id="john" value="John" v-model="checkedNames">
+      <label for="john">John</label>
+      <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+      <label for="mike">Mike</label>
+      <br>
+      <span>Checked names: {{ checkedNames }}</span>
+  </card>
+  <card toggle-name='Radio Button'>
+    <h1>Radio button</h1>
+    <input type='radio' id='one' value='One' v-model='picked'>
+    <label for="one" >One</label>
+    <input type='radio' id='two' value='Two' v-model='picked'>
+    <label for="two" >Two</label>
+    
+    <br>
+    <label>Radio output : {{picked}}</label>
+  </card>
+  <card toggle-name='Select Button'>
+    <select v-model="selected">
+      <option disabled value="">Please select one</option>
+      <option>A</option>
+      <option>B</option>
+      <option>C</option>
+    </select>
+  </br>
+    <span>Selected: {{ selected }}</span>
+
+  </card>
+    <card toggle-name='Dynamic V For select'>
+
+      <select v-model="selected1">
+        <option v-for="option in options" v-bind:value="option.value">
+          {{ option.text }}
+        </option>
+      </select>
+      <span>Selected: {{ selected1 }}</span>
+    </span>
+  </card> 
 </div>
 
 
-<h1> method event handling</h1>
-<div id="example-2">
-  <!-- `greet` is the name of a method defined below -->
-  <button v-on:click="greet">Greet</button>
-</div>
 
-
-<H1>METHODS IN LINE HANDLER</H1>
-<div id="example-3">
-  <button v-on:click="say('hi')">Say hi</button>
-  <button v-on:click="say('what')">Say what</button>
-  <button v-on:click="warn('Form cannot be submitted yet.', $event)">
-    Submit
-  </button>
-</div>
-
-<h1>Event Modifier</h1>
-<!-- the click event's propagation will be stopped -->
-<a v-on:click.stop="doThis">stoppd</a>
-
-<!-- the submit event will no longer reload the page -->
-<form v-on:submit.prevent="onSubmit">prevent submit</form>
-
-<!-- modifiers can be chained -->
-<a v-on:click.stop.prevent="doThat">stop and prevent</a>
-
-<!-- just the modifier -->
-<form v-on:submit.prevent>prevent form</form>
-
-<!-- use capture mode when adding the event listener -->
-<!-- i.e. an event targeting an inner element is handled here before being handled by that element -->
-<div v-on:click.capture="doThis">...</div>
-
-<!-- only trigger handler if event.target is the element itself -->
-<!-- i.e. not from a child element -->
-<div v-on:click.self="doThat">...</div>
-
-
-<h1>V - Model</h1>
-<div id="model">
-
-  <input v-model="message" placeholder="edit me">
-<p>Message is: {{ message }}</p>
-
-<input type="checkbox" id="checkbox" v-model="checked">
-<label for="checkbox">{{ checked }}</label>
-
-<h1>Multiple checkbox bound to same array</h1>
-<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
-<label for="jack">Jack</label>
-<input type="checkbox" id="john" value="John" v-model="checkedNames">
-<label for="john">John</label>
-<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
-<label for="mike">Mike</label>
-<br>
-<span>Checked names: {{ checkedNames }}</span>
-
-</div>
 <!--Closing div-->
 </div>
     </body>

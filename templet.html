@@ -1,0 +1,31 @@
+<script src="vue.js"></script>
+
+
+<div id="app">
+    <card> I'm a card <img v-bind:src="imageUrl">
+        <h1>Radio button</h1>
+        <input type='radio' id='one' value='One' v-model='picked'>
+        <label for="one" >One</label>
+        <input type='radio' id='two' value='Two' v-model='picked'>
+        <label for="two" >Two</label>
+        
+        <br>
+        <label>Radio output : {{picked}}</label>
+    </card>
+    <card> Im another card <img v-bind:src="imageUrl"></card>
+  </div>
+  
+  <template id="card">
+    <div class="section">
+      <div class="title" v-on:click="toggle">
+        <span class="toggleIcon" id="toggleIcon">{{toggleIcon}}</span> Toggle This Section
+      </div>
+      <hr/>
+      <div class="body" v-show="showSection">
+        <slot></slot>
+      </div>
+    </div>
+  </template>
+  
+  <script type="application/javascript" src="templet.js"></script>
+
